@@ -11,17 +11,20 @@
   </div>
   <img alt="Vue logo" src="./assets/logo.png" />
   <div v-for="(product, index) in products" :key="product">
-    <img :src="require(`@/images/${products[index].image}`)" class="room-img" />
+    <img :src="products[index].image" class="room-img" />
     <h4 :style="fontcolorblue" @click="isModal = true">
-      {{ products[index].name }}
+      {{ products[index].title }}
     </h4>
-    <p>{{ products[index].price }} 만원</p>
+    <p>{{ products[index].content }}</p>
+    <p>{{ products[index].price }} 원</p>
     <button @click="increase(index, products)">허위매물신고</button>
     <span>신고수 : {{ products[index].report }}</span>
   </div>
 </template>
 
 <script>
+import data from "./assets/data";
+
 export default {
   name: "App",
   data() {
@@ -29,26 +32,7 @@ export default {
       menu: ["Home", "Shop", "About"],
       isModal: false,
       fontcolorblue: "color : blue",
-      products: [
-        {
-          name: "역삼동원룸",
-          image: "room0.jpg",
-          price: 60,
-          report: 0,
-        },
-        {
-          name: "천호동원룸",
-          image: "room1.jpg",
-          price: 70,
-          report: 0,
-        },
-        {
-          name: "마포구원룸",
-          image: "room2.jpg",
-          price: 80,
-          report: 0,
-        },
-      ],
+      products: data,
     };
   },
   methods: {
