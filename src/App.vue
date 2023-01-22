@@ -6,6 +6,10 @@
   <div v-for="(product, index) in products" :key="product">
     <h4 :style="fontcolorblue">{{ products[index].name }}</h4>
     <p>{{ products[index].price }} 만원</p>
+    <!--<button v-on:click="products[index].report++">허위매물신고</button> -->
+    <!--<button @click="products[index].report += 1">허위매물신고</button>-->
+    <button @click="increase(index, products)">허위매물신고</button>
+    <span>신고수 : {{ products[index].report }}</span>
   </div>
 </template>
 
@@ -20,17 +24,25 @@ export default {
         {
           name: "역삼동원룸",
           price: 60,
+          report: 0,
         },
         {
           name: "천호동원룸",
           price: 70,
+          report: 0,
         },
         {
           name: "마포구원룸",
           price: 80,
+          report: 0,
         },
       ],
     };
+  },
+  methods: {
+    increase(index, products) {
+      products[index].report += 1;
+    },
   },
   components: {},
 };
