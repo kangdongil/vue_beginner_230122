@@ -4,10 +4,9 @@
   </div>
   <img alt="Vue logo" src="./assets/logo.png" />
   <div v-for="(product, index) in products" :key="product">
+    <img :src="require(`@/images/${products[index].image}`)" class="room-img" />
     <h4 :style="fontcolorblue">{{ products[index].name }}</h4>
     <p>{{ products[index].price }} 만원</p>
-    <!--<button v-on:click="products[index].report++">허위매물신고</button> -->
-    <!--<button @click="products[index].report += 1">허위매물신고</button>-->
     <button @click="increase(index, products)">허위매물신고</button>
     <span>신고수 : {{ products[index].report }}</span>
   </div>
@@ -23,16 +22,19 @@ export default {
       products: [
         {
           name: "역삼동원룸",
+          image: "room0.jpg",
           price: 60,
           report: 0,
         },
         {
           name: "천호동원룸",
+          image: "room1.jpg",
           price: 70,
           report: 0,
         },
         {
           name: "마포구원룸",
+          image: "room2.jpg",
           price: 80,
           report: 0,
         },
@@ -66,5 +68,9 @@ export default {
 .menu a {
   color: white;
   padding: 10px;
+}
+.room-img {
+  width: 100%;
+  margin-top: 40px;
 }
 </style>
